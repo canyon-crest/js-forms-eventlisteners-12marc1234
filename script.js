@@ -7,7 +7,9 @@
 //  IMPORTANT: Use addEventListener() to wire your
 //  buttons — do NOT add onclick in the HTML.
 // ============================================
-
+document.getElementById("btnShout").addEventListener('click', function(){
+    outShout.innerHTML = shoutText.value.toUpperCase();
+})
 
 // ============================================
 //  WARM-UP: Shout It!
@@ -29,6 +31,13 @@
 //
 //         Example: "hello" → "HELLO!"
 
+const button = document.get('btnShout');
+const shoutINput = document.getElementById('shoutText');
+const outShout = document.getElementById("outShout");
+
+button.addEventListener('click', function() {
+    outShout.innerHTML = shoutINput.value.toUpperCase + "!";
+})
 
 // ============================================
 //  MAIN: Pizza Builder
@@ -73,6 +82,54 @@
 //      Use .toFixed(2) to format the total.
 //      Example: "Alice, your total is $13.50"
 //      If name is empty, use "Customer" as the default.
+const calcButton = document.getElementById('btnCalc');
+
+calcButton.addEventListener("click", function() {
+    const sizes = document.getElementsByName("rg");
+    let sizePrice;
+    
+    for (let i = 0; i < sizes.length; i++) {
+        if (sizes[i].checked) {
+            sizePrice = parseFloat(sizes[i].value);
+        }
+    }
+})
+
+
+const toppings = document.getElementsByName("cb");
+let toppingCount = 0;
+
+for (let i = 0; i < toppings.length; i++) {
+    if (toppings[i].checked) {
+        toppingCount += 1
+    }
+}
+
+let toppingPrice = toppingCount * 0.50;
+
+const service = document.getElementsById("serviceSelect").value;
+let serviceFee;
+
+if (service === "dinein") {
+    serviceFee = 0;
+} else if (service === "takeout") {
+    serviceFee = 1.50;
+} else {
+    serviceFee = 3.00;
+}
+
+let total = sizePrice + toppingPrice + serviceFee
+
+let enteredName = document.getElementsById("myInput").value;
+
+if (enteredName === "") {
+    enteredName = "Customer";
+}
+
+document.getElementsById("myPara").innerHTML =
+    enteredName + ", your total is $" + total.toFixed(2);
+
+
 
 
 // STEP 4: Get the "Clear" button by ID ("clearBtn")
